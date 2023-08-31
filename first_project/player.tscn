@@ -1,0 +1,59 @@
+[gd_scene load_steps=9 format=3 uid="uid://cybgftkr3u43b"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_l46el"]
+[ext_resource type="Texture2D" uid="uid://c5qkyiytmondg" path="res://sprites/bird/unitytut-birdbody.png" id="1_tj5d7"]
+[ext_resource type="Texture2D" uid="uid://b2psm2qcvtwk6" path="res://sprites/bird/unitytut-birdwingdown.png" id="2_tm17h"]
+[ext_resource type="Texture2D" uid="uid://0aks42sljsa4" path="res://sprites/bird/unitytut-birdwingup.png" id="3_y71an"]
+[ext_resource type="AudioStream" uid="uid://wbuje4a7ab4f" path="res://sounds/jump.mp3" id="5_5jjkk"]
+[ext_resource type="AudioStream" uid="uid://6dpieq1b5k5h" path="res://sounds/specialist.mp3" id="6_wv7p6"]
+[ext_resource type="AudioStream" uid="uid://crg5euhknn4x0" path="res://sounds/school_days.mp3" id="7_317dv"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kjxf1"]
+radius = 26.0192
+
+[node name="player" type="RigidBody2D" groups=["player"]]
+max_contacts_reported = 1
+contact_monitor = true
+script = ExtResource("1_l46el")
+
+[node name="bird" type="Sprite2D" parent="."]
+position = Vector2(2, -9)
+scale = Vector2(0.12, 0.12)
+texture = ExtResource("1_tj5d7")
+
+[node name="wing_down" type="Sprite2D" parent="bird"]
+position = Vector2(-235, 105)
+texture = ExtResource("2_tm17h")
+
+[node name="wing_up" type="Sprite2D" parent="bird"]
+visible = false
+position = Vector2(-235, 105)
+texture = ExtResource("3_y71an")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, -4)
+shape = SubResource("CircleShape2D_kjxf1")
+disabled = true
+
+[node name="Area2D" type="Area2D" parent="." groups=["player"]]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" groups=["player"]]
+position = Vector2(1, -4)
+shape = SubResource("CircleShape2D_kjxf1")
+
+[node name="jump_sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_5jjkk")
+volume_db = -4.586
+
+[node name="bgm" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_wv7p6")
+volume_db = -5.285
+
+[node name="game_over_bgm" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_317dv")
+volume_db = -12.18
+max_distance = 1e+17
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

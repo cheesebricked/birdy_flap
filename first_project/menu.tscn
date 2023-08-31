@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://bjqcmwscsrm4b"]
+
+[ext_resource type="Script" path="res://menu.gd" id="1_60rpf"]
+[ext_resource type="Texture2D" uid="uid://bxtdcxupmtf38" path="res://sprites/menu/birdy-flap-menu.png" id="1_efrjb"]
+[ext_resource type="Texture2D" uid="uid://d4ndluwxda1be" path="res://sprites/menu/birdy-flap-game-over.png" id="2_hflaw"]
+
+[node name="menu" type="Node2D"]
+script = ExtResource("1_60rpf")
+
+[node name="gameover" type="Sprite2D" parent="."]
+position = Vector2(357, 252)
+texture = ExtResource("2_hflaw")
+
+[node name="start" type="Sprite2D" parent="."]
+position = Vector2(357, 252)
+texture = ExtResource("1_efrjb")

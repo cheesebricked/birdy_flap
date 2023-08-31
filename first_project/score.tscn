@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://7hnvbmbsdvgs"]
+
+[ext_resource type="Script" path="res://score.gd" id="1_8xlms"]
+
+[sub_resource type="Theme" id="Theme_agwyx"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="score" type="Label" parent="."]
+offset_right = 137.0
+offset_bottom = 93.0
+theme = SubResource("Theme_agwyx")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 7
+theme_override_font_sizes/font_size = 100
+text = "i"
+horizontal_alignment = 1
+script = ExtResource("1_8xlms")

@@ -1,0 +1,54 @@
+[gd_scene load_steps=6 format=3 uid="uid://c8qfr3hdvssic"]
+
+[ext_resource type="Texture2D" uid="uid://bofpyehiuybr1" path="res://sprites/pipe/unitytut-pipe.png" id="1_0yhx7"]
+[ext_resource type="Script" path="res://pipe.gd" id="1_qdg3r"]
+[ext_resource type="Script" path="res://point.gd" id="3_tvquj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t3pea"]
+size = Vector2(52, 744.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_naqeg"]
+size = Vector2(49.1667, 177.083)
+
+[node name="pipe" type="Node2D"]
+position = Vector2(0, -150)
+scale = Vector2(1.2, 1.2)
+
+[node name="pipe_proper" type="Area2D" parent="." groups=["pipe"]]
+script = ExtResource("1_qdg3r")
+
+[node name="pipe_top_col" type="CollisionShape2D" parent="pipe_proper"]
+z_index = 2
+position = Vector2(0, -262.667)
+shape = SubResource("RectangleShape2D_t3pea")
+
+[node name="pipe_top" type="Sprite2D" parent="pipe_proper"]
+position = Vector2(0, -224.933)
+scale = Vector2(0.1, 0.305794)
+texture = ExtResource("1_0yhx7")
+
+[node name="pipe_bot_col" type="CollisionShape2D" parent="pipe_proper"]
+z_index = 2
+position = Vector2(0, 658.963)
+rotation = -3.14159
+shape = SubResource("RectangleShape2D_t3pea")
+
+[node name="pipe_bot" type="Sprite2D" parent="pipe_proper"]
+position = Vector2(0, 610.963)
+rotation = -3.14159
+scale = Vector2(0.1, 0.296672)
+texture = ExtResource("1_0yhx7")
+
+[node name="point" type="Node2D" parent="."]
+
+[node name="point_area" type="Area2D" parent="point" groups=["point"]]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("3_tvquj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="point/point_area"]
+position = Vector2(0.417, 198.5)
+scale = Vector2(0.1, 0.99)
+shape = SubResource("RectangleShape2D_naqeg")
+
+[connection signal="area_entered" from="point/point_area" to="point/point_area" method="_on_area_entered"]
