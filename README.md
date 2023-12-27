@@ -1,2 +1,3 @@
 # birdy_flap
-My first game developed using Godot. Started August 21.
+A flappy bird clone.
+I do not claim to own any of the music or sound effects used in this game.
